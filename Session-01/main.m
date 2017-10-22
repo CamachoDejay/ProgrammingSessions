@@ -65,9 +65,12 @@ fprintf (fileID, 'The number is %0.2f', num1);
 fclose(fileID);
 
 % Now the task for this session is to use the information in this example to
-% generate a main script that will print to a text file called 'output.txt'
-% the following text:
-% Hello, my name is <students name>
-% And I'm XX years old.
-% please pay attention to the formatting of the number, to say that you are
-% 23.00 years old makes little sense. 
+% generate a main script that will:
+% Save into a variable the name of the student,
+% Save into a variable the age of the student,
+% print to a text file called 'output.txt' the following output:
+% Hello, my name is <student's name>
+% And I'm <student's age> years old.
+% Note that the output consists of two distinct lines. Also please pay
+% attention to the formatting of the number, to say that you are 23.00
+% years old makes little sense.
