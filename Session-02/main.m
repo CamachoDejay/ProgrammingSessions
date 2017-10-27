@@ -25,7 +25,7 @@ assert(ischar(str_1), 'problens with string input')
 disp(num_1)
 disp(str_1)
 %% gather input from user exaple 1 using input - assertion saving the day
-num_1 = input('please enter a number: ','s');
+num_1 = input('please enter a number: ');
 str_1 = input('please enter a string: ','s');
 
 % check that no erros were done
