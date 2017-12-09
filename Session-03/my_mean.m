@@ -4,6 +4,7 @@ function [out_val] = my_mean(vec)
 
 % check for precontidions
 assert(isvector(vec),'input must be a vector')
+assert(isnumeric(vec),'input must be numeric')
 sum_val = sum(vec);
 n_elements = length(vec);
 out_val = sum_val/n_elements;

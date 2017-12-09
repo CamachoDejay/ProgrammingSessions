@@ -59,7 +59,7 @@ ExpInput.angles = angRad;
 ExpInput.values = sinWave;
 
 % prototipe of a function to minimize:
-fitVal   = x0(2).*sin(ExpInput.angles.*x0(3) +x0(1));;
+fitVal   = x0(2).*sin(ExpInput.angles.*x0(3) +x0(1));
 
 dev    = fitVal-ExpInput.values;
 nVal   = length(dev);
@@ -82,7 +82,7 @@ shg
 % example of an initial guess
 phaseGuess_deg = 15;
 ampGuess = 10;
-freqGuess = 2.2; %3
+freqGuess = 2; %3
 
 % do I want visual aid
 doFig = false;
@@ -110,9 +110,9 @@ fun = @(x) fun2min(x,ExpInput,doFig);
 [~, sinFit] = fun2min(out,ExpInput,false);
 
 figure(1)
-plot(angDeg,cosFun,'k','linewidth',2)
+plot(ExpInput.angles,ExpInput.values,'k','linewidth',2)
 hold on
-plot(angDeg,sinFit,'--r','linewidth',2)
+plot(ExpInput.angles,sinFit,'--r','linewidth',2)
 hold off
 title(sprintf('Solution, RMSD: %0.4g',RMSD),'fontsize',14)
 legend({'Experimental','Fit'},'fontsize',12)
@@ -133,7 +133,7 @@ fun = @(x) fun2min(x,ExpInput,doFig);
 figure(3)
 plot(ExpInput.angles,ExpInput.values,'k')
 hold on
-plot(ExpInput.angles,cosFun,'--g')
+% plot(ExpInput.angles,ExpInput.values,'--g')
 plot(ExpInput.angles,sinFit,'r')
 hold off
 title(sprintf('Solution, RMSD: %0.4g',RMSD),'fontsize',14)
