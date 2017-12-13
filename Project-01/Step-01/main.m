@@ -55,9 +55,9 @@ end
 % depth is the maximum iteration depth to use and it must be a positive
 % integer. Thus:
 depth = uint16(depth);
-
+tic
 [f_depth] = mandelbrot(x,y,depth);
-
+toc
 % now we plot
 %   1) I want control over the axis ticks, their value and their label
 %   string. imaginary goes in Y and real part goes in X
@@ -65,7 +65,9 @@ depth = uint16(depth);
 i_val  = linspace(ymin,ymax,10);
 i_idx  = linspace(1,length(y),10);
 i_val = num2cell(round(i_val,4));
+
 i_str = cellfun(@(x) num2str(x,'%0.1f'),i_val,'UniformOutput',false);
+
 %   Real part
 r_val  = linspace(xmin,xmax,10);
 r_idx  = linspace(1,length(x),10);
@@ -77,16 +79,20 @@ subplot(1,2,1)
 imagesc (f_depth) 
 set(gca,'YTick',i_idx, 'YTickLabel',i_str,'XTick',r_idx, 'XTickLabel',r_str)
 axis image
-colormap(flipud(jet(double(depth)+1)))
+cMap = flipud(jet(double(depth)+1));
+cMap(1,:) = [0 0 0];
+colormap(cMap);
 title('Normal scale')
 xlabel('Real')
 ylabel('Imaginary')
 
 subplot(1,2,2)
-imagesc (log10(f_depth)) 
+logIm = log10(double(f_depth));
+logIm (logIm==-Inf) = -0.1;
+imagesc (logIm) 
 set(gca,'YTick',i_idx, 'YTickLabel',i_str,'XTick',r_idx, 'XTickLabel',r_str)
 axis image
-colormap(flipud(jet(double(depth)+1)))
+% colormap(flipud(jet(double(depth)+1)))
 title('Log scale')
 xlabel('Real')
 ylabel('Imaginary')
